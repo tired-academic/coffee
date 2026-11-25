@@ -1,0 +1,6 @@
+/target
+
+/java/build
+*.class
+*.jar
+*.txt

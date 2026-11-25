@@ -1,0 +1,74 @@
+[package]
+name = "coffee"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+repository = "https://github.com/tired-academic/coffee" 
+
+[dependencies]
+base64 = "^0.23.1"
+flate2 = "^1.1.11"
+glam = "^0.34.3"
+rand = "^0.10.4"
+serde = "^1.0.229"
+serde_json = "^1.0.154"
+tracing = "^0.1.44"
+uuid = "^1.29.3"
+zip = "^9.8.2"
+
+[lints.rust]
+# Unused code and misc
+unused = { level = "warn", priority = -2 }
+dead_code = { level = "warn", priority = -1 }
+unused_mut = { level = "warn", priority = -1 }
+unused_variables = { level = "warn", priority = 0 }
+unsafe_code = "warn"
+unused_unsafe = "forbid"
+unused_must_use = "deny"
+unknown_lints = "deny"
+missing_unsafe_on_extern = "deny"
+
+# Rust safety
+unsafe_op_in_unsafe_fn = "deny"
+invalid_reference_casting = "deny"
+invalid_value = "deny"
+static_mut_refs = "deny"
+
+# Ctypes (if we need them)
+improper_ctypes = "deny"
+improper_ctypes_definitions = "deny"
+
+[lints.clippy]
+# Unsafe code hygiene
+unnecessary_safety_doc = "warn"
+unnecessary_safety_comment = "warn"
+multiple_unsafe_ops_per_block = "warn"
+missing_safety_doc = "deny"
+undocumented_unsafe_blocks = "deny"
+not_unsafe_ptr_arg_deref = "deny"
+
+# Development profile, optimization is wicked low, intended for testing stuff.
+[profile.dev]
+opt-level = 0
+debug = true
+strip = "none"
+debug-assertions = true
+overflow-check = true
+lto = false
+panic = "unwind"
+incremental = true
+codegen-units = 256
+rpath = false
+
+# Release profile, highly optimized and is intended for actual play.
+[profile.release]
+opt-level = 3
+debug = false
+strip = "debuginfo"
+debug-assertions = false
+overflow-check = true
+lto = "fat"
+panic = "abort"
+incremental = false
+codegen-units = 1
+rpath = true
