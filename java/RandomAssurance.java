@@ -37,7 +37,7 @@ class RandomAssurance {
         System.out.print("\n");
 
         Random rng4 = new Random(184400L);
-        System.out.println("Seed outputs with seed '178962L':\n------------------------");
+        System.out.println("Seed outputs with seed '184400L':\n------------------------");
         for (int j = 0; j < 32; j++) {
             System.out.println(rng4.nextInt());
         }
